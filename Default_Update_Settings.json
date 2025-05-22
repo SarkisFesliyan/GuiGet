@@ -1,0 +1,810 @@
+{
+    "Application Name": "Deffered Auto Patch",
+    "Company Name": "Chopdot IT",
+    "ReplacementVariables":{
+        "Description": "RE-use top level json variables within this json file to use in the settings file. If the value is ENV then it will pull from the environment",
+        "ProgramData": "ENV",
+        "Company Name": "JSON",
+        "Application Name": "JSON",
+        "Local Test": "Cheese Pizza"
+        },
+    "Package Manager": {
+        "Value": "Winget",
+        "version": "1.0.0",
+        "Description": "{ Local Test } Choose Winget or Chocolatey to install updates"
+        },
+    "Winget CLI": {
+        "Context": "System",
+        "Description": "User or System"
+        },
+    "Use Winget Module": {
+        "Description": "Use the winget module to install updates, Microsoft.WinGet.Client. Have to use this for better formated data from the tool",
+        "Enabled": false
+        },
+    "Logging": {
+        "Description": "Logging settings to determine how to handle logs",
+        "Log Directory": {
+            "Value": "{ ProgramData }\\{ Application Name }\\logs",
+            "Description":"Directory where to store logs"
+            },
+        "Log File Name": {
+            "Value": "{ Application Name }.log",
+            "Description": "Name of the log file"
+            },
+        "Log Max Size MB": {
+            "Value": 10,
+            "Description": "Max size of the log file in MB"
+            },
+        "Log Max Files": {
+            "Value": 10,
+            "Description": "Max number of log files to keep"
+            }
+        },
+    "User Experience": {
+        "Description": "User Experience settings to determine how to App looks and functions.",
+        "User State Gui Activation": {
+            "Description": "User state for the gui to be activated. Active, Disconnected, Idle, Down,  Listen, Connect, Shadowing, Locked, Resetting  ",
+            "States": [
+                "Active",
+                "Idle",
+                "Listen",
+                "Connect",
+                "Shadowing"
+                ],
+            "Wait For User State": {
+                "Description": "Wait for the user state to be in the list of values before showing the gui",
+                "States": [
+                    "Idle",
+                    "Listen",
+                    "Connect",
+                    "Shadowing"
+                    ],
+                "Max Wait Time": 900,
+                "Sleep Time": 60
+                }
+            },
+        "Idle Time Limit": {
+            "Value": 300,
+            "Description": "Number of seconds to trigger gui, if idle time is greater than this value we will wait, if false then it will always show the gui",
+            "Enabled": true
+            },
+        "Max Failed Update Count": {
+            "Value": 2,
+            "Description": "Max number of failed upgrade job attempts before we skip the application. This is used to prevent the application from failing forever and causing bad user expereience"
+            },
+        "Max Update Job Runtime": {
+            "Value": 600,
+            "Description": "Max number of seconds to run the job before we kill it. This is used to prevent the job from running forever and causing issues with the gui"
+            },
+        "Max Defferal Days": {
+            "Value": 3,
+            "Description": "Max number of days to defer the update"
+            },
+        "Max Defferal Amount": {
+            "Value": 3,
+            "Description": "Max number of times to click the defer button"
+            },
+        "Count Down Seconds Force Update": {
+            "Value": 20,
+            "Description": "Number of seconds to before we force an update on applications. This happens when the user is out of defferals"
+            },
+        "Window Countdown Timer": {
+            "Value": 3,
+            "Description": "Number of minutes to before main window closes"
+            },
+        "Notifications": {
+            "Toast Notifications": {
+                "Enabled": true,
+                "Description": "Show Toast notifications to the user, This is overriden by Notification Center if enabled"
+                },
+            "Notification Center": {
+                "Description": "Show Notifications in the Notification Center, This is overriden by Toast Notifications",
+                "Enabled": true,
+                "Module": "Microsoft.PowerShell.BurntToast",
+                "Bypass Do Not Disturb": true,
+                "Notification Arguments": {
+                    },
+                "Notification Registry Data": {
+                    "App Id": "Windows.Defender.SecurityCenter",
+                    "Description": "AppId to use for the notification center grouping, This is used to to create the start menu shortcut for the notification grouping and icon"
+                    },
+                "Dummy Exe": {
+                    "Create": true,
+                    "Path": "{ ProgramData }\\{ Application Name }\\{ Application Name }",
+                    "Description": "Path to the dummy exe to use for the notification center, This is used to get the icon for the notification center which rewquires and EXE"
+                    }
+                },
+            "Show Silent Notifications": {
+                "Enabled": true,
+                "Description": "Show Notifications to the user during background installation of applications that are closed."
+                }
+            },
+        "Current Theme": {
+            "Value": "Dark",
+            "Description": "Current Theme of the GUI Light Or Dark. Registry updates this value after any changes"
+            }
+        },
+    "User Interface": {
+        "Window Width": {
+            "Value": 800,
+            "Description": "Width of the GUI"
+            },
+        "Window Height": {
+            "Value": 375,
+            "Description": "Height of the GUI"
+            },
+        "Window Header Height": {
+            "Value": 100,
+            "Description": "Height of the GUI header where company logo sits"
+            },
+        "Window Header": {
+            "Height": 100,
+            "Horizontal Alignment": "Left",
+            "Vertical Alignment": "Center",
+            "Description": "Height of the GUI header where company logo sits"
+            },
+        "Window Startup Location": {
+            "Value": "Manual",
+            "Description": "Start location of the GUI window. Manual, CenterScreen, CenterOwner. if Manual, you can use predefined settings below for other palcements by setting a vlaue to true",
+            "Bottom Right": true,
+            "Top Right": false,
+            "Top Left": false,
+            "Bottom Left": false
+            },
+        "Show In Taskbar": {
+            "Value": false,
+            "Description": "Show the GUI in the Taskbar"
+            },
+        "Always On Top": {
+            "Value": true,
+            "Description": "Always show the GUI on top of other windows"
+            },
+        "Resizeable": {
+            "Value": false,
+            "Description": "Allow the GUI to be resized, False because it makes an odd border around the GUI"
+            },
+        "Show Title Bar": {
+            "Value": false,
+            "Description": "Show the GUI title bar, Hides the title bar and ability to close the window"
+            },
+        "Company Logo Size": {
+            "Height": 75,
+            "Width": 75,
+            "Horizontal Alignment": "Center",
+            "Vertical Alignment": "Center",
+            "Margin": "5,0,0,0",
+            "Description": "Size of the company logo in the header"
+            },
+        "Header Title": {
+            "Description": "GUI settings for the header",
+            "Font Size": 24,
+            "Font Family": "Segoe UI",
+            "Font Weight": "Normal", 
+            "Font Style": "Normal", 
+            "Font Stretch": "Normal",
+            "Text": "{ Application Name }",
+            "Height": 50,
+            "Width": 50,
+            "Horizontal Alignment": "Center",
+            "Vertical Alignment": "Center",
+            "Margin": "5,35,0,0"
+            },
+        "App Header": {
+            "Description": "Settings for the header above the application details",
+            "Font Size": 14,
+            "Font Family": "Segoe UI",
+            "Font Weight": "Bold", 
+            "Font Style": "Normal", 
+            "Font Stretch": "Normal"
+        },
+        "App Text": {
+            "Description": "Settings for the text left of the buttons.",
+            "Font Size": 12,
+            "Font Family": "Segoe UI",
+            "Font Weight": "Normal", 
+            "Font Style": "Normal", 
+            "Font Stretch": "Normal"
+            },
+        "App Buttons": {
+            "Description": "Settings for the app buttons",
+            "Width": 100,
+            "Height": 35,
+            "Margin": "5,0,0,0",
+            "Corner Radius": 15,
+            "Border Thickness": 2,
+            "Font Size": 12,
+            "Font Family": "Segoe UI",
+            "Font Weight": "Bold", 
+            "Font Style": "Normal", 
+            "Font Stretch": "Normal",
+            "Override Button": {
+                "Defer Until I Cant": {
+                    "Width": 110,
+                    "Height": 35,
+                    "Margin": "5,0,0,0",
+                    "Corner Radius": 15,
+                    "Border Thickness": 2,
+                    "Font Size": 12,
+                    "Font Family": "Segoe UI",
+                    "Font Weight": "Bold", 
+                    "Font Style": "Normal", 
+                    "Font Stretch": "Normal"
+                    }
+                }
+            },
+        "Dock Buttons": {
+            "Description": "Settings for the dock buttons",
+            "Width": 100,
+            "Height": 35,
+            "Margin": "5,0,0,0",
+            "Corner Radius": 15,
+            "Border Thickness": 3,
+            "Font Size": 12,
+            "Font Family": "Segoe UI",
+            "Font Weight": "Normal", 
+            "Font Style": "Normal", 
+            "Font Stretch": "Normal",
+            "Override Button": {
+                "Defer All Until I Cant": {
+                    "Width": 130,
+                    "Height": 35,
+                    "Margin": "5,0,0,0",
+                    "Corner Radius": 15,
+                    "Border Thickness": 3,
+                    "Font Size": 12,
+                    "Font Family": "Segoe UI",
+                    "Font Weight": "Normal", 
+                    "Font Style": "Normal", 
+                    "Font Stretch": "Normal"
+                    }
+                }
+            },
+        "Dock": {
+            "Description": "Settings for the dock",
+            "Horizontal Alignment": "Center",
+            "Vertical Alignment": "Center",
+            "Margin": "0,0,0,0",
+            "Orientation": "Horizontal",
+            "Dock Position": "Bottom"
+            },
+        "Window Countdown Timer": {
+            "Description": "Settings for the dock buttons",
+            "Width": 150,
+            "Height": 35,
+            "Margin": "25,0,0,0",
+            "Corner Radius": 3,
+            "Border Thickness": 2,
+            "Font Size": 12,
+            "Font Family": "Segoe UI",
+            "Font Weight": "Bold", 
+            "Font Style": "Normal", 
+            "Font Stretch": "Normal"
+            }
+        },
+    "Registry Settings": {
+        "Description": "Registry settings to determine where to store update data",
+        "Registry Directory": "hklm:\\\\Software\\{ Company Name }\\{ Application Name }",
+        "RegistryValue": "LastUpdateCheck",
+        "RegistryValueData": "LastUpdateCheck"
+        },
+    "Additional Sources": {
+        "Description": "Winget Sources to determine where to get the updates from. Microsoft.PreIndexed Pre-indexed repository (default Microsoft source type). Microsoft.Rest A REST API-based Winget source. Useful for custom or enterprise repositories. Microsoft.SQLite Uses an SQLite database as a source. NuGet Allows adding a NuGet-based package repository. FileSystem     Uses a local folder as a package source. ",
+        "Sources": [
+                {
+                    "Name": "msstore",
+                    "URL": "https://storeedgefd.dsx.mp.microsoft.com/v9.0",
+                    "Type": "Microsoft.Rest"
+                },
+                {
+                    "Name": "winget",
+                    "URL": "https://cdn.winget.microsoft.com/cache",
+                    "Type": "Microsoft.PreIndexed.Package"
+                }
+            ]
+        },
+    "Graphics": {
+        "Description": "Graphics settings to determine if you want to use a custom image for the buttons and set company logo",
+        "Image Reset Date": {
+            "Value": "05-22-2025",
+            "Description": "Date to reset the images. This is used to prevent the images from being stale and not updating. This is used to prevent the images from being stale and not updating."
+            },
+        "Theme": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Grey Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/GreyPillButton.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light White Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/WhitePillButton.png?raw=true"
+                },
+            "Use Image": false
+            },
+        "Defer All Until I Cant": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Red Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/RedPillButton.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Red Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Light%20Red%20Button.png?raw=true"
+                },
+            "Use Image": false
+            },
+        "Update All": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Green Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/GreenPillButton.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Green Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/GreenPillButton.png?raw=true"
+                },
+            "Use Image": false
+            },
+        "Defer Until I Cant": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Red Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/RedPillButton.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Red Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Light%20Red%20Button.png?raw=true"
+                },
+            "Use Image": false
+            },
+        "Notification Icon": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Icon.ico",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/CompanyLogo?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Icon.ico",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/CompanyLogo?raw=true"
+                },
+            "Use Image": true
+            },
+        "Defer Maxed": {
+            "Dark":  {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Red Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/RedPillButton.png?raw=true"
+                },
+            "Light":  {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Red Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Light%20Red%20Button.png?raw=true"
+                },
+            "Use Image": false
+            },
+        "Header Background": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Header Background.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Dark%20Header%20Background?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Header Background.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Light%20Header%20Background?raw=true"
+                },
+            "Use Image": true
+            },
+        "Company Logo": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Company Logo.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/CompanyLogo?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Company Logo.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/CompanyLogo?raw=true"
+                },
+            "Use Image": true
+            },
+        "Defer": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Blue Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Light%20Blue%20Button.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Blue Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/BluePillButton.png?raw=true"
+                },
+            "Use Image": true
+            },
+        "Update": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Green Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Dark%20Green%20Button.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Green Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Light%20Green%20Button.png?raw=true"
+                },
+            "Use Image": false
+            },
+        "Deferred Until Date": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Red Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Dark%20Purple%20Button.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Red Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Yellow%20Button.png?raw=true"
+                },
+            "Use Image": false
+            },
+        "Update Clicked": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Green Checkmark.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/GreenCheckmark.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Green Checkmark.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/GreenCheckmark.png?raw=true"
+                },
+            "Use Image": true
+            },
+        "Update Countdown": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Red Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/RedPillButton.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Red Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/RedPillButton.png?raw=true"
+                },
+            "Use Image":  false
+            },
+        "Defer All": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Blue Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/BluePillButton.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Blue Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/BluePillButton.png?raw=true"
+                },
+            "Use Image":  false
+            },
+        "Defer Clicked": {
+            "Dark": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Dark Yellow Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Dark%20Grey%20Button.png?raw=true"
+                },
+            "Light": {
+                "Path":  "{ ProgramData }\\{ Application Name }\\Light Yellow Pill Button.png",
+                "Url":  "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Graphics/Lighter%20Brown%20Button.png?raw=true"
+                },
+            "Use Image":  false
+            }
+        },
+    "Themes" : {
+        "Dark" : {
+            "Header Background": "#2E2E2E",
+            "Content Background": "#1C1C1E",
+            "Dock Background": "#2E2E2E",
+            "Header Text": "#e8e7e7",
+            "Text": "#e8e7e7",
+            "App Buttons": {
+                "Update": {
+                    "Background": "#2b2b2b",
+                    "Border": "#17b017",
+                    "Hover": "#219b19",
+                    "Pressed": "#17b017"
+                    },
+                "Defer" : {
+                    "Background": "#2b2b2b",
+                    "Border": "#1760b0",
+                    "Hover": "#15599e",
+                    "Pressed": "#1760b0"
+                    },
+                "Defer Until I Cant" : {
+                    "Background": "#2b2b2b",
+                    "Border": "#b01720",
+                    "Hover": "#99141c",
+                    "Pressed": "#b01720"
+                    },
+                "Defer Maxed": {
+                    "Background": "#2b2b2b",
+                    "Border": "#e7710e",
+                    "Hover": "#cf640c",
+                    "Pressed": "#e7710e"
+                    },
+                "Deferred Until Date" : {
+                    "Background": "#2b2b2b",
+                    "Border": "#e9e815",
+                    "Hover": "#c7c713",
+                    "Pressed": "#e9e815"
+                    },
+                "Update Countdown": {
+                    "Background": "#2b2b2b",
+                    "Border": "#e91815",
+                    "Hover": "#cc1512",
+                    "Pressed": "#e91815"
+                    },
+                "Update Clicked": {
+                    "Background": "#2b2b2b",
+                    "Border": "#2ce915",
+                    "Hover": "#25c512",
+                    "Pressed": "#2ce915"
+                    },
+                "Defer Clicked": {
+                    "Background": "#2b2b2b",
+                    "Border": "#0b58ff",
+                    "Hover": "#0a4ee3",
+                    "Pressed": "#0b58ff"
+                    }
+            },
+            "Dock Buttons": {
+                "Theme": {
+                    "Background": "#2b2b2b",
+                    "Border": "#a9a9a9",
+                    "Hover": "#909090",
+                    "Pressed": "#a9a9a9"
+                    },
+                "Update All": {
+                    "Background": "#2b2b2b",
+                    "Border": "#22e045",
+                    "Hover": "#1fc33c",
+                    "Pressed": "#22e045"
+                    },
+                "Defer All": {
+                    "Background": "#2b2b2b",
+                    "Border": "#101c73",
+                    "Hover": "#4e59a6",
+                    "Pressed": "#101c73"
+                    },
+                "Defer All Until I Cant": {
+                    "Background": "#2b2b2b",
+                    "Border": "#ff0000",
+                    "Hover": "#e50000",
+                    "Pressed": "#ff0000"
+                    },
+                "Window Countdown Timer": {
+                    "Border": "#cf640c",
+                    "ProgressBarFill": "#cf640c",
+                    "ProgressBarBackground": "#2E2E2E"
+                    }
+            }
+        },
+        "Light" : {
+            "Header Background" : "#b7b8b9",
+            "Content Background" : "#dcdcdd",
+            "Dock Background": "#b7b8b9",
+            "Header Text": "#000000",
+            "Text" : "#000000",
+            "App Buttons": {
+                "Update": {
+                    "Background": "#eceaea",
+                    "Border": "#17b017",
+                    "Hover": "#1da61a",
+                    "Pressed": "#17b017"
+                    },
+                "Defer": {
+                    "Background": "#eceaea",
+                    "Border": "#1760b0",
+                    "Hover": "#15599e",
+                    "Pressed": "#1760b0"
+                    },
+                "Defer Until I Cant": {
+                    "Background": "#eceaea",
+                    "Border": "#b01720",
+                    "Hover": "#9c3b41",
+                    "Pressed": "#b01720"
+                    },
+                "Defer Maxed": {
+                    "Background": "#eceaea",
+                    "Border": "#e7710e",
+                    "Hover": "#cf640c",
+                    "Pressed": "#e7710e"
+                    },
+                "Deferred Until Date": {
+                    "Background": "#eceaea",
+                    "Border": "#e9e815",
+                    "Hover": "#c7c713",
+                    "Pressed": "#e9e815"
+                    },
+                "Update Countdown": {
+                    "Background": "#eceaea",
+                    "Border": "#e91815",
+                    "Hover": "#cc1512",
+                    "Pressed": "#e91815"
+                    },
+                "Update Clicked": {
+                    "Background": "#eceaea",
+                    "Border": "#2ce915",
+                    "Hover": "#25c512",
+                    "Pressed": "#2ce915"
+                    },
+                "Defer Clicked": {
+                    "Background": "#eceaea",
+                    "Border": "#0b58ff",
+                    "Hover": "#0a4ee3",
+                    "Pressed": "#0b58ff"
+                    }
+            },
+            "Dock Buttons": {
+                "Theme": {
+                    "Background": "#eceaea",
+                    "Border": "#a9a9a9",
+                    "Hover": "#909090",
+                    "Pressed": "#a9a9a9"
+                    },
+                "Update All": {
+                    "Background": "#eceaea",
+                    "Border": "#22e045",
+                    "Hover": "#1fc33c",
+                    "Pressed": "#22e045"
+                    },
+                "Defer All": {
+                    "Background": "#eceaea",
+                    "Border": "#1f7cda",
+                    "Hover": "#15599e",
+                    "Pressed": "#101c73"
+                    },
+                "Defer All Until I Cant": {
+                    "Background": "#eceaea",
+                    "Border": "#ff0000",
+                    "Hover": "#e50000",
+                    "Pressed": "#ff0000"
+                    },
+                "Window Countdown Timer": {
+                    "Border": "#f39c12",
+                    "ProgressBarFill": "#f39c12",
+                    "ProgressBarBackground": "#b7b8b9"
+                    }
+            }
+        }
+    },
+    "Enforced Application Versions": {
+        "Description": "List of applications to Enforce a minimum version. You may have a appliation that you want to skip updates for but also want to enforce a minimum. You may also want to force the users to update instead of give them a chance to defer. this runs first before skipping apps and going through the regular workflow.",
+        "Applications": {
+            "Microsoft.PowerShell": "7.2.0",
+            "Microsoft.VisualStudioCode": "1.70.0",
+            "Microsoft.Edge": "100.0.1185.36",
+            "Google.Chrome": "100.0.4896.60",
+            "Mozilla.Firefox": "100.0",
+            "Zoom.Zoom": "5.10.4"
+            }
+        },
+    "Application Skip List": {
+        "Description": "List of applications to skip during updates. You can add Microsoft.* to skip all Microsoft applications. Enforcement of a minimum version will run first before skipping applications.",
+        "Skip List": [
+                "Microsoft.Office",
+                "Microsoft.Teams.*"
+            ]
+        },
+    "Reset Failed Applications Before Date": {
+        "Description": "Reset the failed applications before this date. This is used to reset the failed applications that have failed and stoped updating. This is used to prevent the application from being skipped forever. There may have been a bad package or custom argument that caused the failures. if you fixed the problem you can add a date here to make sure it attempts to upgrade again.",
+        "Applications": {
+            "All": "2025-01-01",
+            "Microsoft.PowerShell": "2025-04-28",
+            "Microsoft.VisualStudioCode": "2025-03-12"
+            }
+        },
+    "Application Process Names": {
+        "Description": "List of process names to check if the application is running before closing. This is required for silent updates unless you say force install = true",
+        "Guess Process Name": {
+            "Enabled": true,
+            "Description": "NOT YET IMPLEMENTED Guess the process name if it is not in the list and exit the application if it is running"
+            },
+        "Process Names": {
+                "Microsoft.EdgeWebView2Runtime": "msedgewebview2",
+                "Microsoft.Edge": "msedge",
+                "AgileBits.1Password": "1Password",
+                "Zoom.Zoom": "Zoom",
+                "Google.Chrome": "chrome",
+                "Microsoft.code": "code",
+                "Microsoft.VisualStudioCode": "Code"
+            }
+        },
+    "Application Installation Arguments": {
+        "Description": "List of default installation arguments to use for installations",
+        "Default": {
+            "Description": "Default is used for all installations. Add additional arguments for in the custom section for specific applications",
+            "Winget Arguments": [
+                "--silent", 
+                "--accept-package-agreements", 
+                "--accept-source-agreements", 
+                "--force", 
+                "--verbose"
+                ],
+            "Winget Module Arguments": {
+                "Mode" : "Silent",
+                "Force": true,
+                "Verbose": true,
+                "Log": "{ ProgramData }\\{ Application Name }\\logs\\Winget-Module-Install.log"
+                },
+            "Chocolatey Arguments": [
+                "--force", 
+                "--force-dependencies"
+                ]
+            },
+        "Custom": {
+            "Description": "List of custom installation arguments to use for installations, custom - args passed in addition to the default arguments, override - args replace the default arguments, winget - args passed to winget. In the case your using Winget Module it only support override.",
+            "Microsoft.PowerShell": {
+                "Force Uninstall First": true,
+                "Winget Arguments": [
+                    "--silent", 
+                    "--accept-package-agreements", 
+                    "--accept-source-agreements", 
+                    "--force",
+                    "--verbose"
+                    ],
+                "Winget Module Arguments": {
+                    "Mode" : "Silent",
+                    "Force": true,
+                    "Verbose": true,
+                    "Log": "{ ProgramData }\\{ Application Name }\\logs\\Winget-Module-Install.log"
+                    },
+                "Chocolatey Arguments": [
+                    "--force", 
+                    "--force-dependencies"
+                    ]
+                },
+            "Zoom.Zoom": {
+                "Force Uninstall First": false,
+                "Winget Arguments": [
+                    "--silent", 
+                    "--accept-package-agreements", 
+                    "--accept-source-agreements", 
+                    "--force", 
+                    "--custom",
+                    "INSTALLLEVEL=2 /qn /norestart zConfig=\"NoFacebook=1\" zRecommend=\"AudioAutoAdjust=1\"",
+                    "--verbose"
+                ],
+                "Winget Module Arguments": {
+                    "Mode" : "Silent",
+                    "Force": true,
+                    "Verbose": true,
+                    "Custom": "INSTALLLEVEL=2 /qn /norestart zConfig=\"NoFacebook=1\" zRecommend=\"AudioAutoAdjust=1\"",
+                    "Log": "{ ProgramData }\\{ Application Name }\\logs\\Winget-Module-Install.log"
+                    },
+                "Chocolatey Arguments": [
+                    "--force", 
+                    "--force-dependencies"
+                    ]
+                },
+            "SlackTechnologies.Slack": {
+                "Force Uninstall First": false,
+                "Skip Custom Args On Failure": true,
+                "Winget Arguments": [
+                    "--silent", 
+                    "--accept-package-agreements", 
+                    "--accept-source-agreements", 
+                    "--force",
+                    "--verbose"
+                    ],
+                "Winget Module Arguments": {
+                    "Mode" : "Silent",
+                    "Force": true,
+                    "Verbose": true,
+                    "Custom": "INSTALLLEVEL=2 /qn /norestart",
+                    "Log": "{ ProgramData }\\{ Application Name }\\logs\\Winget-Module-Install.log"
+                    },
+                "Chocolatey Arguments": [
+                    "--force", 
+                    "--force-dependencies"
+                    ]
+                },
+            "JetBrains.PyCharm.Community": {
+                "Force Uninstall First": true,
+                "Skip Custom Args On Failure": true,
+                "Winget Arguments": [
+                    "--silent", 
+                    "--accept-package-agreements", 
+                    "--accept-source-agreements", 
+                    "--force", 
+                    "--verbose"
+                    ],
+                "Winget Module Arguments": {
+                    "Mode" : "Silent",
+                    "Force": true,
+                    "Verbose": true,
+                    "Custom": "/S /NCRC",
+                    "Log": "{ ProgramData }\\{ Application Name }\\logs\\Winget-Module-Install.log"
+                    },
+                "Chocolatey Arguments": [
+                    "--force", 
+                    "--force-dependencies"
+                    ]
+                }
+            }
+        }
+}
