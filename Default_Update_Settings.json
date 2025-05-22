@@ -1,5 +1,5 @@
 {
-    "Application Name": "Deffered Auto Patch",
+    "Application Name": "Deffered Application Patching",
     "Company Name": "Chopdot IT",
     "ReplacementVariables":{
         "Description": "RE-use top level json variables within this json file to use in the settings file. If the value is ENV then it will pull from the environment",
