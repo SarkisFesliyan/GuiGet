@@ -1,5 +1,5 @@
 param (
-    [string]$settings_url = "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/Default_Update_Settings.json?raw=true", # null if you arent going to pull down from a URL
+    [string]$settings_url = "https://github.com/SarkisFesliyan/WingetUpdaterGui/blob/main/GuiGet%20Update%20Settings.json?raw=true", # null if you arent going to pull down from a URL
     [string]$settings_local = "$((Get-Location).path)\GuiGet Update Settings.json", # Null if you arent going to pull down from a local file
     [bool]$settings_encrypted = $false, # True if the settings file is encrypted, false if not
     [System.Array]$key = $null, # EXISTING_32_4IVBYTE_ARRAY_KEY E.g. @([byte]161, [byte]52, [byte]181, ...)
