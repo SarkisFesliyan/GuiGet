@@ -29,7 +29,8 @@ Missed deadline notification
 ![image (91)](https://github.com/user-attachments/assets/5248b91c-9176-41f0-9075-ee452d156b45)
 
 Standard notification
-![Notifications](https://github.com/user-attachments/assets/d07d44b0-a642-46c9-b6ac-fee7525480aa)
+
+![Notifications](https://github.com/user-attachments/assets/3e71f6fc-b458-4059-9f12-dbe9f2ea126f)
 
 
 
