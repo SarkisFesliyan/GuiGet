@@ -1,4 +1,5 @@
-![image](https://github.com/user-attachments/assets/62507147-11f5-4956-93d8-7055054afa15)
+
+![Screenshot 2025-06-23 at 8 21 40 PM](https://github.com/user-attachments/assets/fb22cb11-6dc0-48fc-90c2-a70f9cd43232)
 
 # GuiGet.ps1 Summary
 
@@ -11,11 +12,26 @@
 - Fetches update settings from a **URL** or **local file**
 - Supports **encrypted settings** using AES
 - **WinGet integration** for package update automation
+- Forced updates
+- Silent updates
+- Deferral updates
+- enforce minimum application versions
 - **Logging and log rotation**
 - **User interaction via GUI dialogs**
-- Optional **fallback update paths**
-- **App-specific logic** 
+- **App-specific update arguments logic** 
 - **Graceful error handling and logging**
+- Complete control over UI Design
+- Notification center notifications
+
+## 🔐 Notifications
+Missed deadline notification
+
+![image (91)](https://github.com/user-attachments/assets/5248b91c-9176-41f0-9075-ee452d156b45)
+
+Standard notification
+![Notifications](https://github.com/user-attachments/assets/d07d44b0-a642-46c9-b6ac-fee7525480aa)
+
+
 
 
 ## 🔐 Settings and Security
